@@ -1,0 +1,106 @@
+[
+  {
+    "letter": "A",
+    "position": 0
+  },
+  {
+    "letter": "B",
+    "position": 2100
+  },
+  {
+    "letter": "C",
+    "position": 4200
+  },
+  {
+    "letter": "D",
+    "position": 6300
+  },
+  {
+    "letter": "E",
+    "position": 8400
+  },
+  {
+    "letter": "F",
+    "position": 10500
+  },
+  {
+    "letter": "G",
+    "position": 12600
+  },
+  {
+    "letter": "H",
+    "position": 14700
+  },
+  {
+    "letter": "I",
+    "position": 16800
+  },
+  {
+    "letter": "J",
+    "position": 18900
+  },
+  {
+    "letter": "K",
+    "position": 21000
+  },
+  {
+    "letter": "L",
+    "position": 23100
+  },
+  {
+    "letter": "M",
+    "position": 25200
+  },
+  {
+    "letter": "N",
+    "position": 27300
+  },
+  {
+    "letter": "O",
+    "position": 29400
+  },
+  {
+    "letter": "P",
+    "position": 31500
+  },
+  {
+    "letter": "Q",
+    "position": 33600
+  },
+  {
+    "letter": "R",
+    "position": 35700
+  },
+  {
+    "letter": "S",
+    "position": 37800
+  },
+  {
+    "letter": "T",
+    "position": 39900
+  },
+  {
+    "letter": "U",
+    "position": 42000
+  },
+  {
+    "letter": "V",
+    "position": 44100
+  },
+  {
+    "letter": "W",
+    "position": 46200
+  },
+  {
+    "letter": "X",
+    "position": 48300
+  },
+  {
+    "letter": "Y",
+    "position": 50400
+  },
+  {
+    "letter": "Z",
+    "position": 52500
+  }
+]
