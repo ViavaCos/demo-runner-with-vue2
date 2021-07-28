@@ -1,6 +1,6 @@
 <template>
   <div class="traversal-item">
-      <p>{{item.value}}</p>
+      <slot :item="item"></slot>
   </div>
 </template>
 
@@ -15,6 +15,9 @@ export default {
 
 <style>
 .traversal-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 4px 0;
     border: 1px solid lightgreen;
 }
