@@ -6,7 +6,7 @@
         class="infinite-list-item"
         v-for="item in visibleData"
         :key="item.id"
-        :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }"
+        :style="!item.e_name ? { height: itemSize/2 + 'px',lineHeight: itemSize/2 + 'px', background:'#f2f2f2' } : { height: itemSize + 'px',lineHeight: itemSize + 'px' }"
       >
         <slot v-bind:item="item"></slot>
       </div>
@@ -27,6 +27,16 @@ export default {
     itemSize: {
       type: Number,
       default: 200
+    },
+    // 是否为定位滚动
+    positioningScroll: {
+      type: Boolean,
+      default: false
+    },
+    // 额外展示数据量(前后各4)
+    additionDataCount: {
+      type: Number,
+      default: 4
     }
   },
   computed: {
@@ -40,11 +50,15 @@ export default {
     },
     // 偏移量对应的style
     getTransform () {
-      this.$emit('scroll', this.startOffset)
       return `translate3d(0,${this.startOffset}px,0)`
     },
     // 获取真实显示列表数据
     visibleData () {
+      // 额外渲染(4+4)条数据
+      if (this.additionDataCount) {
+        return this.listData.slice(this.start <= this.additionDataCount ? this.start : this.start - this.additionDataCount, Math.min(this.end + this.additionDataCount, this.listData.length))
+      }
+      // 渲染当前可视数据
       return this.listData.slice(this.start, Math.min(this.end, this.listData.length))
     }
   },
@@ -75,7 +89,19 @@ export default {
       this.end = this.start + this.visibleCount
       // 此时的偏移量
       this.startOffset = (scrollTop - (scrollTop % this.itemSize))
+
+      this.$emit('scroll', this.startOffset) // 用于计算当前激活索引值
+      if (!this.additionDataCount) return
+      if (this.start > this.additionDataCount) {
+        this.startOffset = this.startOffset - (this.additionDataCount * this.itemSize)
+      }
+      // 若本次滚动为定位滚动，则需计算当前偏移量中是否需加上额外渲染数据中的标题多删去的高度
+      if (this.positioningScroll) {
+        this.startOffset += ([...this.visibleData].splice(0, this.additionDataCount).filter(item => !item.e_name).length * 20)
+        this.$emit('done')
+      }
     },
+    // 滚动到指定偏移量(渲染数据将重新计算)
     scrollPositionTo (x, y) {
       this.$refs.list.scrollTo(x, y)
     }
@@ -84,10 +110,6 @@ export default {
 </script>
 
 <style scoped>
-/* 
-   根据下方虚拟列表二次修改:
-   https://blog.csdn.net/qq_37818095/article/details/102954854
-*/
 .infinite-list-container {
   height: 100%;
   overflow: auto;
@@ -108,13 +130,14 @@ export default {
   right: 0;
   top: 0;
   position: absolute;
-  text-align: center;
 }
 
 .infinite-list-item {
-  padding: 10px;
-  color: #555;
+  display: flex;
+  padding: 0 13px;
+  color: #333;
   box-sizing: border-box;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #f2f2f2;
+  background-color: #fff;
 }
 </style>
