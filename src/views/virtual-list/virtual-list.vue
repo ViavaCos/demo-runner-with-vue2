@@ -6,7 +6,7 @@
         class="infinite-list-item"
         v-for="item in visibleData"
         :key="item.id"
-        :style="!item.e_name ? { height: itemSize/2 + 'px',lineHeight: itemSize/2 + 'px', background:'#f2f2f2' } : { height: itemSize + 'px',lineHeight: itemSize + 'px' }"
+        :style="item[titleName] ? { height: itemSize/2 + 'px',lineHeight: itemSize/2 + 'px', background:'#f2f2f2' } : { height: itemSize + 'px',lineHeight: itemSize + 'px' }"
       >
         <slot v-bind:item="item"></slot>
       </div>
@@ -18,6 +18,11 @@
 export default {
   name: 'VirtualList',
   props: {
+    // 标题字段
+    titleName: {
+      type: String,
+      default: 'title'
+    },
     // 所有列表数据
     listData: {
       type: Array,
