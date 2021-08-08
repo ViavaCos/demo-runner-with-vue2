@@ -30,16 +30,15 @@ export default {
     methods:{
         bindScrollFn(e){
             if(this.throttleFlag) return
-            // console.log(e.target.scrollingElement.scrollTop);
+            // console.log('scroller-top:', e.target.scrollingElement.scrollTop);
             for (let index = 0; index < this.allImg.length; index++) {
-                // console.log(ele.offsetTop);
+                console.log('img-top:', this.allImg[index].offsetTop);
                 // console.log(this.allImg[index].src);
 
                 // 若已有图片连接，则跳过本次循环
                 if(this.allImg[index].src) continue
-
-                // 若滚动元素滚动距离 + 滚动元素高度 >= 图片元素距顶部偏移量 (意味着页面中看到当前图片元素了)
-                if(e.target.scrollingElement.scrollTop + e.target.scrollingElement.clientHeight >= this.allImg[index].offsetTop){
+                // 若滚动元素滚动距离 + 滚动元素高度 + 图片元素高度 >= 图片元素距顶部偏移量 (意味着页面中看到当前图片元素了)
+                if(e.target.scrollingElement.scrollTop + e.target.scrollingElement.clientHeight + 198 >= this.allImg[index].offsetTop){
                     // 将自定义属性中的图片链接赋值给img元素
                     this.allImg[index].src = this.allImg[index].getAttribute('data-src')
                 }
