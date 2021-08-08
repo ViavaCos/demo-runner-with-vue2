@@ -38,13 +38,15 @@ export default {
   word-break: keep-all;
   overflow-x: auto;
   overflow-y: hidden;
+  background-color: cornsilk;
 }
 
 #nav a {
   flex: 1;
   width: fit-content;
-  padding: 0 2px;
+  padding: 0 6px;
   font-weight: bold;
+  white-space: nowrap;
   color: #333333;
   &:nth-child(n+2){
     border-left: 1px solid #999;
