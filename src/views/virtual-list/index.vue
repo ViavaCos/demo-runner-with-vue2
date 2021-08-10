@@ -28,7 +28,7 @@ import { getMockData } from './mock/index.js'
 const MOCK = getMockData(5250, 200, 60)
 
 export default {
-  name: 'SupplierList',
+  name: 'VirtualListIndex',
   components: {
     VirtualList: () => import('./virtual-list.vue'),
     IndexBar: () => import('./index-bar.vue')

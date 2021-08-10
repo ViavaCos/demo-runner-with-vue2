@@ -29,10 +29,10 @@ export default {
     },
     methods:{
         bindScrollFn(e){
-            if(this.throttleFlag) return
+            if(this.throttleFlag || !e) return
             // console.log('scroller-top:', e.target.scrollingElement.scrollTop);
             for (let index = 0; index < this.allImg.length; index++) {
-                console.log('img-top:', this.allImg[index].offsetTop);
+                // console.log('img-top:', this.allImg[index].offsetTop);
                 // console.log(this.allImg[index].src);
 
                 // 若已有图片连接，则跳过本次循环

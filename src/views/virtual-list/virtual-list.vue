@@ -139,6 +139,7 @@ export default {
 
 .infinite-list-item {
   display: flex;
+  align-items: center;
   padding: 0 13px;
   color: #333;
   box-sizing: border-box;
