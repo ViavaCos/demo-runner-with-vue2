@@ -23,9 +23,19 @@ const routes = [
 routes.push(...testRoute)
 console.log(routes);
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  // mode: 'history',
+  // base: process.env.BASE_URL,
   routes
+})
+
+// solve Error: Loading chunk failed.
+router.onError(error => {
+  const pattern = /Loading chunk (\w)+ failed/g
+  const isError = error.message.match(pattern)
+  const targetPath = router.history.pending.fullPath
+  if (isError) {
+    router.replace(targetPath)
+  }
 })
 
 export default router
