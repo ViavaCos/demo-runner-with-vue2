@@ -13,5 +13,10 @@ export default  [
         path: '/lazy-img',
         name: 'lazy-img',
         component: () => import('../../views/lazy-img/index.vue')
+    },
+    {
+        path: '/calc-expand',
+        name: 'calc-expand',
+        component: () => import('../../views/calc-expand/index.vue')
     }
 ]
