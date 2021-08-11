@@ -14,10 +14,10 @@
       </div>
 
         <div class="text-content">
-            <div class="expand-wrap" :class="{ 'show-all': show }">
+            <div ref="expandWrap" class="expand-wrap" :class="{ 'show-all': show }">
                 <span v-for="(str, idx) in dataList" :key="idx" class="expand-item">{{ str }}</span>
             </div>
-            <div class="expand-operation" @click="show = !show">{{ show ? 'hide..' : 'more..'}}</div>
+            <div v-if="showExpand" class="expand-operation" @click="show = !show">{{ show ? 'hide..' : 'more..'}}</div>
         </div>
   </div>
 </template>
@@ -28,7 +28,8 @@ export default {
     data(){
         return {
             dataList: [],
-            show: false
+            show: false,
+            showExpand: false
         }
     },
     created(){
@@ -45,6 +46,21 @@ export default {
                 this.dataList.push(someStr1.substring(random1 % 2, random1) || '空')
                 this.dataList.push(someStr2.substring(random2 % 2, random2) || '空')
             }
+            this.$nextTick(() => {
+                this.getShowExpandStatus()
+            })
+        },
+        getShowExpandStatus(){
+            // 首行子元素偏移量 = 父容器偏移量 + 首行子元素内、外边距(padding、margin)
+            const firstLineChildOffset = this.$refs['expandWrap'] ? this.$refs['expandWrap'].offsetTop + 2 + 4 : 0
+            // console.log(firstLineChildOffset, 10000000086)
+            this.showExpand = this.dataList.length && this.$refs['expandWrap'] && this.$refs['expandWrap'].children.length
+                ? this.$refs['expandWrap'].children[this.dataList.length - 1].offsetTop > firstLineChildOffset
+                : false
+            // console.log(this.$refs['expandWrap'])
+            // this.$refs['expandWrap'].children.length && console.log(this.$refs['expandWrap'].children)
+            // this.$refs['expandWrap'].children.length && console.log(this.$refs['expandWrap'].children[this.dataList.length - 1])
+            // this.$refs['expandWrap'].children.length && console.dir(this.$refs['expandWrap'].children[this.dataList.length - 1].offsetTop, this.showExpand)
         }
     }
 }

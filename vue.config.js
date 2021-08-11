@@ -7,5 +7,9 @@ module.exports = {
     lintOnSave: false, // 关闭eslint
     chainWebpack: config => {
         config.resolve.alias.set('@', resolve('src'))
+    },
+    devServer: {
+        // run in gitpod.
+        disableHostCheck: true
     }
 }
