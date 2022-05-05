@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h2>Index</h2>
+    <h2>subpage</h2>
     <div id="nav">
       <router-link v-for="route in routes" :key="route.name" :to="route.path">
         {{ route.name }}

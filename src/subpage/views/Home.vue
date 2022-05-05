@@ -1,28 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <h1>subpage</h1>
     <input type="file" name="filename" @change="onFileChange"><span>请上传</span>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import { fileToBuffer } from '@/utils/node.js'
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
-  },
   methods: {
     onFileChange(e){
       console.log(e);
       const file = e.target.files[0]
       console.log(file);
-      const res = fileToBuffer(file)
-      console.log(10086, res)
     }
   }
 }
